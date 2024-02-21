@@ -7,7 +7,7 @@ export const prerender = false;
 const posts = await getPosts();
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Julesen Art Gallery">
   <section>
     {posts.length
       ? posts.map((post) => <Card post={post} />)

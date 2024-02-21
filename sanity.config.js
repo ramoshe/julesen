@@ -17,14 +17,36 @@ if (!projectId || !dataset) {
 }
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import { visionTool } from "@sanity/vision";
+// import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schema";
 export default defineConfig({
-  name: "project-name",
-  title: "Project Name",
+  name: "julesen",
+  title: "Julesen",
   projectId,
   dataset,
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title("Content")
+          .items([
+            S.listItem()
+              .title("General")
+              .icon()
+              .child(
+                S.document()
+                  .schemaType("general")
+                  .documentId("general")
+              ),
+            ...S.documentTypeListItems().filter(
+              (listItem) =>
+                ![
+                  "general",
+                ].includes(listItem.getId() ?? "default")
+            ),
+          ]),
+    }),
+  ],
   schema: {
     types: schemaTypes,
   },
