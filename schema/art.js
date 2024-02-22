@@ -10,10 +10,19 @@ export default defineType({
       type: "string",
     }),
     defineField({
-      name: "description",
-      title: "Description",
-      type: "text",
-      rows: 3,
+      name: "year",
+      title: "Year",
+      type: "string",
+    }),
+    defineField({
+      name: "medium",
+      title: "Medium",
+      type: "string",
+    }),
+    defineField({
+      name: "size",
+      title: "Size",
+      type: "string",
     }),
     defineField({
       name: "mainImage",
