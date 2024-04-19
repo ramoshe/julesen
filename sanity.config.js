@@ -38,10 +38,19 @@ export default defineConfig({
                   .schemaType("general")
                   .documentId("general")
               ),
+            S.listItem()
+              .title("About")
+              .icon()
+              .child(
+                S.document()
+                  .schemaType("about")
+                  .documentId("about")
+              ),
             ...S.documentTypeListItems().filter(
               (listItem) =>
                 ![
                   "general",
+                  "about",
                 ].includes(listItem.getId() ?? "default")
             ),
           ]),

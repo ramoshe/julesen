@@ -31,6 +31,18 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          type: "number",
+          name: "width",
+          title: "Width (in pixels)",
+        },
+        {
+          type: "number",
+          name: "height",
+          title: "Height (in pixels)",
+        },
+      ],
     }),
     defineField({
 			name: "altImages",
