@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import {ExpandIcon} from '@sanity/icons'
 
 export default defineType({
   name: "art",

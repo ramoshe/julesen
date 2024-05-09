@@ -7,3 +7,8 @@ export async function getArt() {
   );
 }
 
+export async function getAbout() {
+  return await sanityClient.fetch(
+    groq`*[_type == "about"]`,
+  );
+}

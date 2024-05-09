@@ -19,7 +19,7 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { schemaTypes } from "./schema";
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list';
-import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
+import {UserIcon} from '@sanity/icons';
 import {ComposeIcon} from '@sanity/icons';
 
 export default defineConfig({
@@ -33,22 +33,6 @@ export default defineConfig({
         S.list()
           .title("Content")
           .items([
-            S.listItem()
-              .title("General")
-              .icon()
-              .child(
-                S.document()
-                  .schemaType("general")
-                  .documentId("general")
-              ),
-            S.listItem()
-              .title("About")
-              .icon()
-              .child(
-                S.document()
-                  .schemaType("about")
-                  .documentId("about")
-              ),
             orderableDocumentListDeskItem({
               type: "art",
               title: "Art",
@@ -57,6 +41,22 @@ export default defineConfig({
               S,
               context,
             }),
+            S.listItem()
+            .title("About")
+            .icon(UserIcon)
+            .child(
+              S.document()
+              .schemaType("about")
+              .documentId("about")
+            ),
+            S.listItem()
+              .title("Uploads")
+              .icon()
+              .child(
+                S.document()
+                  .schemaType("general")
+                  .documentId("general")
+              ),
             ...S.documentTypeListItems().filter(
               (listItem) =>
                 ![

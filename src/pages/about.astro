@@ -1,15 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { PortableText } from "astro-portabletext";
+import { Image } from 'astro:assets';
+import { urlFor } from "../utils/image";
 export const prerender = false;
-// import { getPosts } from "../utils/sanity";
-// const posts = await getPosts();
+import { getAbout } from "../utils/sanity";
+const about = await getAbout();
 ---
 
 <Layout title="Julesen Art Gallery">
   <section>
     <div class="container">
-      <div>
-        <h2>About Jules</h2>
+      <div class="portrait">
+        {about[0].portrait ?
+          <Image
+            src={urlFor(about[0].portrait).width(about[0].portrait.width).height(about[0].portrait.height).url()}
+            alt='Jules Portrait'
+            width={about[0].portrait.width}
+            height={about[0].portrait.height} />
+        : null}
+      </div>
+      <div class="content">
+        {about[0].content ? about[0].content.map(section =>
+          <h2 class="section-title">{section.sectionTitle}</h2>
+          <PortableText value={section.sectionText} class="section-text" />
+        )
+        : null}
       </div>
     </div>
   </section>
@@ -18,14 +34,28 @@ export const prerender = false;
 <style>
   .container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto 10em;
+    gap: 5em;
   }
-
-  @media (min-width: 575px) {
-    .container {
-      width: 100%;
-    }
+  .portrait img {
+    width: 400px;
+    height: auto;
+    border: 20px solid var(--white);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+  }
+</style>
+<style is:inline>
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 2em;
+    color: var(--primary-dark);
+    line-height: 1em;
+    margin: 0;
+  }
+  .section-text {
+    margin-bottom: 3em;
   }
 </style>
