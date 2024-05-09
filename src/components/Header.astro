@@ -1,11 +1,30 @@
 ---
 ---
 <header class="header">
-    <h1>Julesen Art Gallery</h1>
+    <div class="logo">
+        <div class="fakelogo"></div>
+    </div>
+    <div class="title">
+        <h1>Jules Engesser</h1>
+    </div>
 </header>
 <style>
     .header {
         display: flex;
         justify-content: center;
+        align-items: center;
+        gap: 2em;
+        margin: 2em;
+    }
+    .fakelogo {
+        width: 100px;
+        height: 100px;
+        background-color: var(--primary);
+        border-radius: 50%;
+    }
+    .title {
+        font-family: var(--font-display);
+        font-size: 1.5em;
+        line-height: 1em;
     }
 </style>
