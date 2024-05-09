@@ -1,15 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
 export const prerender = false;
-// import { getPosts } from "../utils/sanity";
-// const posts = await getPosts();
+import { Image } from 'astro:assets';
+import { urlFor } from "../utils/image";
+
+import { getArt } from "../utils/sanity";
+const art = await getArt();
 ---
 
 <Layout title="Julesen Art Gallery">
   <section>
     <div class="container">
-      <div>
-        <h2>Website Coming Soon!</h2>
+      <div class="art-container">
+        {art.map(art =>
+          <Image
+            class="artpiece"
+            src={urlFor(art.mainImage).width(Math.round(art.mainImage.width*.1)).height(Math.round(art.mainImage.height*.1)).url()}
+            alt={art.title}
+            width={Math.round(art.mainImage.width*.1)}
+            height={Math.round(art.mainImage.height*.1)} />
+        )}
       </div>
     </div>
   </section>
@@ -17,15 +27,20 @@ export const prerender = false;
 
 <style>
   .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    max-width: 1200px;
+    margin: 2em auto 10em;
   }
 
-  @media (min-width: 575px) {
-    .container {
-      width: 100%;
-    }
+  .art-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5em;
+  }
+
+  .artpiece {
+    border: 20px solid var(--white);
   }
 </style>

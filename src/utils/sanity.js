@@ -1,15 +1,9 @@
 import { sanityClient } from "sanity:client";
 import groq from "groq";
-export async function getPosts() {
+
+export async function getArt() {
   return await sanityClient.fetch(
-    groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`,
+    groq`*[_type == "art"] | order(orderRank)`,
   );
 }
-export async function getPost(slug) {
-  return await sanityClient.fetch(
-    groq`*[_type == "post" && slug.current == $slug][0]`,
-    {
-      slug,
-    },
-  );
-}
+

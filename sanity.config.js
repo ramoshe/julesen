@@ -17,8 +17,11 @@ if (!projectId || !dataset) {
 }
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-// import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schema";
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list';
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
+import {ComposeIcon} from '@sanity/icons';
+
 export default defineConfig({
   name: "julesen",
   title: "Julesen",
@@ -26,7 +29,7 @@ export default defineConfig({
   dataset,
   plugins: [
     structureTool({
-      structure: (S) =>
+      structure: (S, context) =>
         S.list()
           .title("Content")
           .items([
@@ -46,11 +49,20 @@ export default defineConfig({
                   .schemaType("about")
                   .documentId("about")
               ),
+            orderableDocumentListDeskItem({
+              type: "art",
+              title: "Art",
+              icon: ComposeIcon,
+              menuItems: [],
+              S,
+              context,
+            }),
             ...S.documentTypeListItems().filter(
               (listItem) =>
                 ![
                   "general",
                   "about",
+                  "art",
                 ].includes(listItem.getId() ?? "default")
             ),
           ]),
@@ -58,5 +70,5 @@ export default defineConfig({
   ],
   schema: {
     types: schemaTypes,
-  },
+  }
 });

@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+
 export default defineType({
   name: "art",
   title: "Art",
@@ -70,5 +71,11 @@ export default defineType({
 				},
 			],
 		}),
+    defineField({
+      name: "orderRank",
+      title: "Order",
+      type: "string",
+      hidden: true,
+    }),
   ],
 });
