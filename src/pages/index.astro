@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Socials from "../components/Socials.astro";
-export const prerender = false;
-import { Image } from 'astro:assets';
 import { urlFor } from "../utils/image";
+
+export const prerender = false;
 
 import { getArt } from "../utils/sanity";
 const art = await getArt();
@@ -73,5 +73,18 @@ const art = await getArt();
   }
   .artpiece:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  }
+</style>
+
+<style is:global>
+  .gslide-desc {
+    font-family: var(--font-primary) !important;
+    font-size: 110% !important;
+  }
+  .gslide-title {
+    font-family: var(--font-primary) !important;
+    font-weight: bolder !important;
+    font-size: 150% !important;
+    margin-top: 0 !important;
   }
 </style>
