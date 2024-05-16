@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Socials from "../components/Socials.astro";
 export const prerender = false;
 import { Image } from 'astro:assets';
 import { urlFor } from "../utils/image";
@@ -13,36 +14,62 @@ const art = await getArt();
     <div class="container">
       <div class="art-container">
         {art.map(art =>
-          <Image
-            class="artpiece"
-            src={urlFor(art.mainImage).width(Math.round(art.mainImage.width*.1)).height(Math.round(art.mainImage.height*.1)).url()}
-            alt={art.title}
-            width={Math.round(art.mainImage.width*.1)}
-            height={Math.round(art.mainImage.height*.1)} />
+          <a
+            class="glightbox"
+            href={urlFor(art.mainImage).width(art.mainImage.width).height(art.mainImage.height).url()}
+            data-glightbox=`title: ${art.title}; description: Year: ${art.year}<br>Medium: ${art.medium}<br>Size: ${art.size};`
+            data-type="image"
+          >
+            <img
+              class="artpiece"
+              src={urlFor(art.mainImage).width(Math.round(art.mainImage.width*.1)).height(Math.round(art.mainImage.height*.1)).url()}
+              alt={art.title}
+            />
+          </a>
         )}
       </div>
     </div>
   </section>
+  <Socials />
 </Layout>
+
+<script>
+  import GLightbox from "glightbox";
+  import "glightbox/dist/css/glightbox.min.css";
+  document.addEventListener("astro:page-load", () => {
+      console.log("Glightbox function run");
+      const lightbox: any = GLightbox({
+          touchNavigation: true,
+          loop: true,
+          autoplayVideos: true,
+          width: "80vw",
+          height: "80vw",
+      });
+  }, { once: false });
+</script>
 
 <style>
   .container {
     max-width: 1200px;
-    margin: 2em auto 10em;
+    margin: 2em auto;
+    display: flex;
+    justify-content: center;
   }
 
   .art-container {
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 5em;
   }
 
   .artpiece {
     border: 20px solid var(--white);
     box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    max-width: 80vw;
+    max-height: 80vw;
   }
   .artpiece:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;

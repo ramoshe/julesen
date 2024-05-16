@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Socials from "../components/Socials.astro";
 import { PortableText } from "astro-portabletext";
 import { Image } from 'astro:assets';
 import { urlFor } from "../utils/image";
@@ -29,6 +30,7 @@ const about = await getAbout();
       </div>
     </div>
   </section>
+  <Socials />
 </Layout>
 
 <style>
@@ -37,7 +39,7 @@ const about = await getAbout();
     align-items: center;
     justify-content: center;
     max-width: 1200px;
-    margin: 0 auto 10em;
+    margin: 0 auto;
     gap: 5em;
   }
   .portrait img {

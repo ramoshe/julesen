@@ -1,9 +1,44 @@
 ---
+import { Icon } from "astro-icon/components";
+import 'cooltipz-css';
+
+const links = {
+  "tiktok": "https://www.tiktok.com/@Julesen",
+  "kick": "https://kick.com/julesen",
+  "instagram": "#",
+  "youtube": "https://youtube.com/@julesen7373",
+  "discord": "https://discord.com/invite/xnJNWJcgTJ",
+}
 ---
 <section>
-  <div id="socials"></div>
+  <div id="socials">
+    <a href={links.tiktok} target="_blank" class="link cooltipz--top" aria-label="TikTok"><Icon name="tiktok" class="icon" /></a>
+    <a href={links.kick} target="_blank" class="link cooltipz--top" aria-label="Kick"><Icon name="kick" class="icon" /></a>
+    <a href={links.instagram} target="_blank" class="link cooltipz--top" aria-label="Instagram"><Icon name="instagram" class="icon" /></a>
+    <a href={links.youtube} target="_blank" class="link cooltipz--top" aria-label="YouTube"><Icon name="youtube" class="icon" /></a>
+    <a href={links.discord} target="_blank" class="link cooltipz--top" aria-label="Discord"><Icon name="discord" class="icon" /></a>
+  </div>
 </section>
 
 <style>
-
+  #socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+    flex-wrap: wrap;
+    height: 30em;
+  }
+  a {
+    color: inherit;
+  }
+  .icon {
+    min-height: 70px;
+    width: auto;
+    max-width: 70px;
+    color: var(--secondary);
+  }
+  .icon:hover, .icon:active {
+    color: var(--primary);
+  }
 </style>
