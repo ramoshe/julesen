@@ -65,27 +65,50 @@ const art = await getArt();
       scrollTrigger: {
         trigger: image,
         start: "center center",
-        toggleActions: "restart none reverse none",
+        toggleActions: "play none reverse none",
         scrub: 1,
-        // pin: true
       },
       x: 0,
       rotation: 360,
     });
-  })
+  });
+
 
   gsap.to(".bottomlogo", {
     scrollTrigger: {
       trigger: ".bottomlogo",
-      start: "center center"
+      start: "top center",
+      toggleActions: "play none restart none",
     },
     scale: 2,
+    opacity: 1,
+    duration: 2,
   })
 
+  // let toggleAnimations = document.querySelector("#toggleAnimations");
+  // console.log(toggleAnimations);
+  //
+  // toggleAnimations.addEventListener("change", () => {
+  //   // console.log(images);
+  //   if(!toggleAnimations.checked) {
+  //     images.forEach(image => {
+  //       gsap.to(image, {
+  //         scrollTrigger: {
+  //           trigger: image,
+  //           toggleActions: "none none none none",
+  //           scrub: 1,
+  //         },
+  //         x: 0,
+  //         rotation: 0,
+  //       });
+  //     });
+  //   }
+  // });
 </script>
 
 <style>
   .container {
+    width: 100vw;
     max-width: 1200px;
     margin: 2em auto;
     padding-bottom: 10em;
@@ -94,7 +117,7 @@ const art = await getArt();
   }
 
   .art-container {
-    width: 80%;
+    width: 80vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,6 +139,7 @@ const art = await getArt();
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
   }
   .fakelogo {
     width: 170px;
