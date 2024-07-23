@@ -1,11 +1,14 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.jpg';
+import name from '../assets/name.png';
 ---
 <header class="header">
     <div class="logo">
-        <div class="fakelogo"></div>
+        <Image src={logo} alt="Julesen" />
     </div>
     <div class="name">
-        <h1>Jules Engesser</h1>
+        <Image src={name} alt="Julianna Engesser" />
     </div>
 </header>
 <style>
@@ -16,25 +19,29 @@
         gap: 2em;
         margin: 4em;
     }
-    .fakelogo {
+    .logo img {
         width: 170px;
         height: 170px;
-        background-color: var(--primary);
         border-radius: 50%;
+        transition: transform .7s ease-in-out;
     }
-    .name {
-        font-family: var(--font-display);
-        font-size: 3em;
-        line-height: 1em;
+    .logo img:hover {
+        transform: rotate(360deg);
+    }
+    .name img {
+        max-width: 30vw;
+        height: auto;
+        transform: perspective(400px) rotateX(0deg);
+        transition: transform .7s ease-in-out;
+    }
+    .name img:hover {
+        transform: perspective(400px) rotateX(360deg);
     }
 
     @media (max-width: 800px) {
-        .fakelogo {
+        .logo img {
             width: 100px;
             height: 100px;
-        }
-        .name {
-            font-size: 2em;
         }
     }
 
@@ -44,7 +51,12 @@
             margin-bottom: 0;
         }
         .name {
-            font-size: 1.5em;
+            text-align: center;
+            width: 100%;
+            margin-top: -40px;
+        }
+        .name img {
+            max-width: 50vw;
         }
     }
 </style>

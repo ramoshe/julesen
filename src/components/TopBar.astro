@@ -4,15 +4,8 @@ const currentPath = pathname.slice(1); // remove the first "/"
 ---
 <nav>
   <div id="navlinks">
-    {currentPath != "" ? <a href="/">Home</a> : null}
-    {currentPath != "about" ? <a href="/about">About</a> : null}
-  </div>
-  <div id="navtoggle">
-    <label class="switch">
-      <input type="checkbox" id="toggleAnimations">
-      <span class="slider round"></span>
-      <span class="animation">Animation</span>
-    </label>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
   </div>
 </nav>
 
@@ -24,84 +17,18 @@ const currentPath = pathname.slice(1); // remove the first "/"
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40%;
   }
-  nav a {
-    color: var(--gray) !important;
-    text-decoration: none;
-    /* min-width: 10em; */
-  }
-
-  .animation {
-    /* position: relative;
-    left: 4em; */
-    color: var(--gray);
-  }
-
-  /* The switch - the box around the slider */
-  .switch {
-    position: relative;
-    left: -3em;
+  #navlinks {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8em;
-    width: 3em;
-    height: 1.5em;
+    gap: 30vw;
   }
-
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+  a {
+    color: var(--gray);
+    text-decoration: none;
   }
-
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #888;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 1em;
-    width: 1em;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  input:checked + .slider {
-    background-color: var(--secondary-light);
-  }
-
-  input:focus + .slider {
-    box-shadow: 0 0 1px var(--secondary-light);
-  }
-
-  input:checked + .slider:before {
-    -webkit-transform: translateX(1.5em);
-    -ms-transform: translateX(1.5em);
-    transform: translateX(1.5em);
-  }
-
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 100px;
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
+  a:hover {
+    color: var(--secondary-light);
   }
 </style>

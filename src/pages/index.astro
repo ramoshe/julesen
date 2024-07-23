@@ -30,11 +30,6 @@ const art = await getArt();
       </div>
     </div>
   </section>
-  <section>
-    <div class="bottomlogo">
-      <div class="fakelogo"></div>
-    </div>
-  </section>
   <Socials />
 </Layout>
 
@@ -53,99 +48,38 @@ const art = await getArt();
   }, { once: false });
 </script>
 
-<script>
-  import { gsap } from "gsap/dist/gsap";
-  import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
-
-  const images = gsap.utils.toArray('.image');
-
-  images.forEach(image => {
-    gsap.to(image, {
-      scrollTrigger: {
-        trigger: image,
-        start: "center center",
-        toggleActions: "play none reverse none",
-        scrub: 1,
-      },
-      x: 0,
-      rotation: 360,
-    });
-  });
-
-
-  gsap.to(".bottomlogo", {
-    scrollTrigger: {
-      trigger: ".bottomlogo",
-      start: "top center",
-      toggleActions: "play none restart none",
-    },
-    scale: 2,
-    opacity: 1,
-    duration: 2,
-  })
-
-  // let toggleAnimations = document.querySelector("#toggleAnimations");
-  // console.log(toggleAnimations);
-  //
-  // toggleAnimations.addEventListener("change", () => {
-  //   // console.log(images);
-  //   if(!toggleAnimations.checked) {
-  //     images.forEach(image => {
-  //       gsap.to(image, {
-  //         scrollTrigger: {
-  //           trigger: image,
-  //           toggleActions: "none none none none",
-  //           scrub: 1,
-  //         },
-  //         x: 0,
-  //         rotation: 0,
-  //       });
-  //     });
-  //   }
-  // });
-</script>
-
 <style>
   .container {
-    width: 100vw;
-    max-width: 1200px;
+    width: 100%;
+    height: auto;
+    max-width: 1400px;
     margin: 2em auto;
     padding-bottom: 10em;
     display: flex;
     justify-content: center;
+    overflow: hidden;
   }
 
   .art-container {
-    width: 80vw;
+    width: 100%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     gap: 5em;
   }
 
   .artpiece {
     border: 20px solid var(--white);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     max-width: 80vw;
     max-height: 80vw;
+    transition: box-shadow .5s ease;
   }
+
   .artpiece:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
-  }
-  .bottomlogo {
-    margin-top: 10em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-  }
-  .fakelogo {
-    width: 170px;
-    height: 170px;
-    background-color: var(--primary);
-    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   }
 </style>
 
