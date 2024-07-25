@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import Socials from "../components/Socials.astro";
 import { PortableText } from "astro-portabletext";
-import { Image } from 'astro:assets';
 import { urlFor } from "../utils/image";
 export const prerender = false;
 import { getAbout } from "../utils/sanity";
@@ -14,7 +13,7 @@ const about = await getAbout();
     <div class="container">
       <div class="portrait">
         {about[0].portrait ?
-          <Image
+          <img
             src={urlFor(about[0].portrait).width(about[0].portrait.width).height(about[0].portrait.height).url()}
             alt='Jules Portrait'
             width={about[0].portrait.width}
