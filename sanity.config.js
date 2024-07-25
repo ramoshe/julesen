@@ -49,18 +49,9 @@ export default defineConfig({
               .schemaType("about")
               .documentId("about")
             ),
-            S.listItem()
-              .title("Uploads")
-              .icon()
-              .child(
-                S.document()
-                  .schemaType("general")
-                  .documentId("general")
-              ),
             ...S.documentTypeListItems().filter(
               (listItem) =>
                 ![
-                  "general",
                   "about",
                   "art",
                 ].includes(listItem.getId() ?? "default")

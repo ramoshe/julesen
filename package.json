@@ -23,6 +23,7 @@
     "astro": "4.3.2",
     "astro-icon": "^1.1.0",
     "astro-portabletext": "0.9.6",
+    "astro-seo": "^0.8.4",
     "autoprefixer": "10.4.17",
     "cooltipz-css": "^2.3.0",
     "glightbox": "^3.3.0",
