@@ -14,6 +14,7 @@ const about = await getAbout();
       <div class="portrait">
         {about[0].portrait ?
           <img
+            class="portrait-image"
             src={urlFor(about[0].portrait).width(about[0].portrait.width).height(about[0].portrait.height).url()}
             alt='Jules Portrait'
             width={about[0].portrait.width}
@@ -36,15 +37,23 @@ const about = await getAbout();
   .container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2em;
     gap: 5%;
   }
-  .portrait img {
+  .portrait, .content {
+    width: 50%;
+  }
+  .portrait {
+    display: flex;
+    justify-content: center;
+  }
+  .portrait-image {
+    box-sizing: border-box;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     height: auto;
     border: 20px solid var(--white);
     box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
@@ -53,6 +62,10 @@ const about = await getAbout();
   @media (max-width: 900px) {
     .container {
       flex-wrap: wrap;
+      justify-content: center;
+    }
+    .portrait, .content {
+      width: 100%;
     }
     .content {
       margin-top: 5em;
