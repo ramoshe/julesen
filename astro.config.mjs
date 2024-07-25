@@ -18,14 +18,16 @@ import react from "@astrojs/react";
 // Change this depending on your hosting provider (Vercel, Netlify etc)
 // https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter
 import netlify from "@astrojs/netlify";
-
 import icon from "astro-icon";
+
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
   // Hybrid+adapter is required to support embedded Sanity Studio
   output: "server",
   adapter: netlify(),
+  site: 'https://julesen.com',
   integrations: [sanityIntegration({
     projectId,
     dataset,
@@ -33,7 +35,7 @@ export default defineConfig({
     useCdn: false,
     // `false` if you want to ensure fresh data
     apiVersion: "2023-03-20" // Set to date of setup to use the latest API version
-  }),
-  react(), // Required for Sanity Studio
-  icon()]
+  }), react(),
+  // Required for Sanity Studio
+  icon(), sitemap()]
 });
